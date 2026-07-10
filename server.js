@@ -6,6 +6,7 @@ import morgan from "morgan";
 import "./config/db.js";
 import logger from "./utils/logger.js";
 import errorHandler from "./middleware/errorHandler.js";
+import authRoutes from "./routes/authRoutes.js";
 
 dotenv.config();
 
@@ -16,6 +17,8 @@ app.use(cookieParser());
 app.use(morgan("combined",{stream:{write:(message)=>{logger.info(message.trim());}}}));
 app.use("/uploads",express.static("uploads"));
 app.get("/",(req,res)=>{res.json({message:"Ecommerce API funcionando"});});
+
+app.use("/api/auth", authRoutes);
 
 // Middleware global de errores
 app.use(errorHandler);
