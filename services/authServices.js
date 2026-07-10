@@ -2,13 +2,15 @@ import bcrypt from "bcryptjs";
 import User from "../models/User.js";
 import RefreshToken from "../models/RefreshToken.js";
 import {generateAccessToken, generateRefreshToken, verifyRefreshToken} from "../utils/jwt.js";
+import AppError from "../utils/AppError.js";
+import { HTTP_STATUS } from "../constants/httpStatus.js";
 import { ROLES } from "../constants/roles.js";
 import { MESSAGES } from "../constants/messages.js";
 
 const register = async ({name, email, password}) => {
 	const existingUser = await User.findByEmail(email);
 	if (existingUser) {
-		throw new Error(MESSAGES.USER_EXISTS);
+		throw new Error(MESSAGES.USER_EXISTS, HTTP_STATUS.CONFLICT);
 	}
 	const hashedPassword = await bcrypt.hash(password,10);
 	const userId = await User.create({name, email, password: hashedPassword, role: ROLES.USER});
@@ -18,11 +20,11 @@ const register = async ({name, email, password}) => {
 const login = async ({email, password}) => {
 	const user = await User.findByEmail(email);
 	if (!user) {
-		throw new Error(MESSAGES.INVALID_CREDENTIALS);
+		throw new Error(MESSAGES.INVALID_CREDENTIALS, HTTP_STATUS.UNAUTHORIZED);
 	}
 	const validPassword = await bcrypt.compare(password, user.password);
 	if (!validPassword) {
-		throw new Error(MESSAGES.INVALID_CREDENTIALS);
+		throw new Error(MESSAGES.INVALID_CREDENTIALS, HTTP_STATUS.UNAUTHORIZED);
 	}
 	const accessToken = generateAccessToken(user);
 	const refreshToken = generateRefreshToken(user);
