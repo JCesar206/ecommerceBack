@@ -2,14 +2,19 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
-
+import morgan from "morgan";
+import logger from "./utils/logger.js";
+import errorHandler from "./middleware/errorHandler.js";
 dotenv.config();
 const app = express();
-app.use(cors({origin:"http://localhost:5173", credentials:true}));
+app.use(cors({origin:"http://localhost:5173",credentials:true}));
 app.use(express.json());
 app.use(cookieParser());
-app.use("/uploads", express.static("uploads"));
-
+app.use(morgan("combined",{stream:{write:(message)=>{logger.info(message.trim());}}}));
+app.use("/uploads",express.static("uploads"));
 app.get("/",(req,res)=>{res.json({message:"Ecommerce API funcionando"});});
+
+// Middleware global de errores
+app.use(errorHandler);
 const PORT = process.env.PORT || 5000;
-app.listen(PORT,()=>{console.log(`Servidor corriendo en puerto ${PORT}`);});
+app.listen(PORT,()=>{logger.info(`Servidor iniciado en http://localhost:${PORT}`);});
