@@ -3,9 +3,12 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import morgan from "morgan";
+import "./config/db.js";
 import logger from "./utils/logger.js";
 import errorHandler from "./middleware/errorHandler.js";
+
 dotenv.config();
+
 const app = express();
 app.use(cors({origin:"http://localhost:5173",credentials:true}));
 app.use(express.json());
