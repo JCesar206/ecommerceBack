@@ -1,0 +1,6 @@
+{"level":"info","message":"Servidor iniciado en puerto 5000","timestamp":"2026-07-10T00:50:54.258Z"}
+{"level":"info","message":"Servidor iniciado en http://localhost:5000","timestamp":"2026-07-10T00:51:36.674Z"}
+{"level":"info","message":"::1 - - [10/Jul/2026:00:52:03 +0000] \"GET / HTTP/1.1\" 200 39 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"","timestamp":"2026-07-10T00:52:03.192Z"}
+{"level":"info","message":"::1 - - [10/Jul/2026:00:52:03 +0000] \"GET /favicon.ico HTTP/1.1\" 404 150 \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"","timestamp":"2026-07-10T00:52:03.497Z"}
+{"level":"info","message":"Servidor iniciado en http://localhost:5000","timestamp":"2026-07-10T01:02:02.795Z"}
+{"level":"info","message":"MySQL conectado correctamente","timestamp":"2026-07-10T01:02:02.878Z"}
