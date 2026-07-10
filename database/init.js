@@ -32,6 +32,7 @@ const createDatabase = async()=>{
 			token TEXT NOT NULL,
 			expires_at DATETIME NOT NULL,
 			created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+			INDEX idx_user_id (user_id),
 			FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE)`);
 
 			console.log("Base de datos creada correctamente");
