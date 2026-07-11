@@ -21,4 +21,9 @@ const login = asyncHandler(async(req,res) => {
 		accessToken: result.accessToken
 	});
 });
-export default {register, login};
+const me = asyncHandler(async (req,res) => {
+	const user = await User.findById(req.user.id);
+	return ApiResponse.success(res, HTTP_STATUS.OK, "Usuario autenticado", user);
+});
+
+export default {register, login, me};
