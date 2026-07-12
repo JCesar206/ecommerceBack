@@ -6,11 +6,15 @@ export const MESSAGES = Object.freeze({
 	INVALID_CREDENTIALS: "Correo o contraseña incorrectos",
 	USER_EXISTS: "El correo ya está registrado",
 	USER_NOT_FOUND: "Usuario no encontrado",
+	UNAUTHORIZED: "Usuario no autorizado",
 	TOKEN_REQUIRED: "Token requerido",
 	INVALID_TOKEN: "Token inválido",
 	ACCESS_DENIED: "Acceso denegado",
+	PRODUCT_NOT_FOUND: "Producto no encontrado",
 	PRODUCT_CREATED: "Producto creado correctamente",
 	PRODUCT_UPDATED: "Producto actualizado correctamente",
 	PRODUCT_DELETE: "Producto eliminado correctamente",
+	PRODUCTS_FETCHED: "Productos obtenidos corretamente",
+	PRODUCT_FETCHED: "Producto obtenido correctamente",
 	INTERNAL_ERROR: "Errir interno del servidor"
 });
