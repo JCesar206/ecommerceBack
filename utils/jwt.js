@@ -11,18 +11,21 @@ export const generateAccessToken = (user) => {
 	{expiresIn: process.env.ACCESS_TOKEN_EXPIRE}
 	);
 };
+
 export const generateRefreshToken = (user) => {
 	return jwt.sign(
 		{
 			id: user.id
 		},
-		process.env.JWT_REFRESH_TOKEN,
+		process.env.JWT_REFRESH_SECRET,
 		{expiresIn: process.env.REFRESH_TOKEN_EXPIRE}
 	);
 };
+
 export const verifyAccessToken = (token) => {
 	return jwt.verify(token, process.env.JWT_ACCESS_SECRET);
 };
+
 export const verifyRefreshToken = (token) => {
 	return jwt.verify(token, process.env.JWT_REFRESH_SECRET);
 };
