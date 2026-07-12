@@ -11,15 +11,22 @@ const seed = async()=>{
 			database: process.env.DB_NAME,
 			port: process.env.DB_PORT
 		});
-		const password = await bcrypt.hash("admin123",10);
+
+		const adminPassword = await bcrypt.hash("admin123",10);
+		const userPassword = await bcrypt.hash("user123",10);
 		await connection.query(`INSERT INTO users(name,email,password,role)
-			VALUES ('Administrador','admin@test.com',?,'admin') ON DUPLICATE KEY UPDATE email=email`, [password]);
+			VALUES ('Administrador','admin@test.com',?,'admin') ON DUPLICATE KEY UPDATE email=email`, [adminPassword]);
+
+		await connection.query(`INSERT INTO users(name,email,password,role)
+			VALUES ('Usuario','user@test.com',?,'user') ON DUPLICATE KEY UPDATE email=email`, [userPassword]);
+		
+		await connection.query(`DELETE FROM products`);
 		await connection.query(`INSERT INTO products(name,description,image,price,stock) VALUES
 			('Laptop ASUS','Laptop profesional para trabajo','laptop.jpg',899.99,19),
 			('Mouse Logitech','Mouse inalámbrico','mouse.jpg',29.99,50),
 			('Teclado Mecánico','Teclado RGB Gamer','keyboard.jpg',79.99,20),
 			('Audífonos Sony','Audífonos bluetooth','headphones.jpg',59.99,30)`);
-			console.log("Datos iniciales insertados.");
+			logger.info("Base de datos poblada correctamente.");
 			await connection.end();
 	} catch (error) {
 		console.log(error);
