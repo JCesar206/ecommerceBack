@@ -13,12 +13,17 @@ const reset = async()=>{
 		await connection.query(`DROP DATABASE IF EXISTS ${process.env.DB_NAME}`);
 		console.log("Base eliminada");
 		await connection.end();
-		exec("npm run db:init && npm run db:seed", (error,stdout)=>{
+		exec("npm run db:init && npm run db:seed", (error,stdout,stderr)=>{
 			if(error) {
 				console.log(error);
 				return;
 			}
+			if(stderr) {
+				console.log(stderr);
+			}
+			if(stdout) {
 			console.log(stdout);
+			}
 		});
 	} catch (error) {
 		console.log(error);
