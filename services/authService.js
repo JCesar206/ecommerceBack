@@ -1,15 +1,15 @@
 import bcrypt from "bcryptjs";
 import User from "../models/User.js";
 import RefreshToken from "../models/RefreshToken.js";
-import { generateAccessToken, generateRefreshToken, verifyAccessToken, verifyRefreshToken } from "../utils/jwt.js";
+import { generateAccessToken, generateRefreshToken, verifyRefreshToken } from "../utils/jwt.js";
 import AppError from "../utils/AppError.js";
 import { ROLES } from "../constants/roles.js";
 import { MESSAGES } from "../constants/messages.js";
 import { HTTP_STATUS } from "../constants/httpStatus.js";
 
 const register = async ({name, email, password}) => {
-	const existinUser = await User.findByEmail(email);
-	if (existinUser) {
+	const existingUser = await User.findByEmail(email);
+	if (existingUser) {
 		throw new AppError(MESSAGES.USER_EXISTS, HTTP_STATUS.CONFLICT);
 	}
 	const hashedPassword = await bcrypt.hash(password, 10);
