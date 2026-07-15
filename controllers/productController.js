@@ -23,7 +23,7 @@ const create = asyncHandler(async (req,res) => {
 const update = asyncHandler(async (req,res) => {
 	const productData = {...req.body, image: req.file ? `/uploads/products/${req.file.filename}` : undefined};
 	const product = await productService.update(req.params.id, productData);
-	return ApiResponse.success(res, HTTP_STATUS, MESSAGES.PRODUCT_UPDATED, product);
+	return ApiResponse.success(res, HTTP_STATUS.OK, MESSAGES.PRODUCT_UPDATED, product);
 });
 
 const remove = asyncHandler(async (req,res) => {
