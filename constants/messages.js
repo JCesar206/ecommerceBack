@@ -14,7 +14,7 @@ export const MESSAGES = Object.freeze({
 	PRODUCT_CREATED: "Producto creado correctamente",
 	PRODUCT_UPDATED: "Producto actualizado correctamente",
 	PRODUCT_DELETE: "Producto eliminado correctamente",
-	PRODUCTS_FETCHED: "Productos obtenidos corretamente",
+	PRODUCTS_FETCHED: "Productos obtenidos correctamente",
 	PRODUCT_FETCHED: "Producto obtenido correctamente",
 	INTERNAL_ERROR: "Errir interno del servidor"
 });
