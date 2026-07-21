@@ -12,7 +12,9 @@ import productRoutes from "./routes/productRoutes.js";
 dotenv.config();
 
 const app = express();
-app.use(cors({origin:"http://localhost:5173",credentials:true}));
+const allowedOrigins = ["http://localhost:5173", "https://jcesar206.github.io"];
+app.use(cors({origin: allowedOrigins, credentials: true}));
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(morgan("combined",{stream:{write:(message)=>{logger.info(message.trim());}}}));
