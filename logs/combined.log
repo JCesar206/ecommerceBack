@@ -1564,3 +1564,17 @@
 {"level":"info","message":"MySQL conectado correctamente","timestamp":"2026-07-22T15:33:40.391Z"}
 {"level":"info","message":"Servidor iniciado en http://localhost:5000","timestamp":"2026-07-22T15:36:21.665Z"}
 {"level":"info","message":"MySQL conectado correctamente","timestamp":"2026-07-22T15:36:21.912Z"}
+{"level":"info","message":"Base de datos poblada correctamente.","timestamp":"2026-07-22T17:38:05.027Z"}
+{"level":"info","message":"Iniciando Ecommerce API...","timestamp":"2026-07-22T17:40:15.075Z"}
+{"level":"info","message":"Servidor iniciado correctamente en puerto 5000","timestamp":"2026-07-22T17:40:15.090Z"}
+{"level":"info","message":"MySQL conectado correctamente","timestamp":"2026-07-22T17:40:15.442Z"}
+{"level":"info","message":"::1 - - [22/Jul/2026:17:40:25 +0000] \"GET / HTTP/1.1\" 200 39 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"","timestamp":"2026-07-22T17:40:25.111Z"}
+{"level":"info","message":"::1 - - [22/Jul/2026:17:40:25 +0000] \"GET /favicon.ico HTTP/1.1\" 404 150 \"http://localhost:5000/\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"","timestamp":"2026-07-22T17:40:25.296Z"}
+{"level":"info","message":"::1 - - [22/Jul/2026:17:40:38 +0000] \"GET /api/products HTTP/1.1\" 200 716 \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"","timestamp":"2026-07-22T17:40:38.870Z"}
+{"level":"error","message":"secretOrPrivateKey must have a value","method":"POST","stack":"Error: secretOrPrivateKey must have a value\n    at module.exports [as sign] (C:\\ecommerce\\back\\node_modules\\jsonwebtoken\\sign.js:111:20)\n    at generateAccessToken (file:///C:/ecommerce/back/utils/jwt.js:5:13)\n    at Object.login (file:///C:/ecommerce/back/services/authService.js:30:21)\n    at async file:///C:/ecommerce/back/controllers/authController.js:15:17","status":500,"timestamp":"2026-07-22T17:41:15.068Z","url":"/api/auth/login"}
+{"level":"info","message":"::1 - - [22/Jul/2026:17:41:15 +0000] \"POST /api/auth/login HTTP/1.1\" 500 66 \"-\" \"PostmanRuntime/7.54.0\"","timestamp":"2026-07-22T17:41:15.072Z"}
+{"level":"info","message":"::1 - - [22/Jul/2026:17:42:18 +0000] \"GET / HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36\"","timestamp":"2026-07-22T17:42:18.994Z"}
+{"level":"info","message":"Iniciando Ecommerce API...","timestamp":"2026-07-22T17:50:10.735Z"}
+{"level":"info","message":"Servidor iniciado correctamente en puerto 5000","timestamp":"2026-07-22T17:50:10.749Z"}
+{"level":"info","message":"MySQL conectado correctamente","timestamp":"2026-07-22T17:50:11.497Z"}
+{"level":"info","message":"::1 - - [22/Jul/2026:17:50:16 +0000] \"POST /api/auth/login HTTP/1.1\" 200 316 \"-\" \"PostmanRuntime/7.54.0\"","timestamp":"2026-07-22T17:50:16.133Z"}

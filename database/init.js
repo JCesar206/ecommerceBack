@@ -18,7 +18,7 @@ const createDatabase = async()=>{
 			name VARCHAR(100) NOT NULL,
 			email VARCHAR(150) UNIQUE NOT NULL,
 			password VARCHAR(255) NOT NULL,
-			role ENUM("admin","user") DEFAULT "user",
+			role ENUM('admin','user') DEFAULT 'user',
 			created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)`);
 
 		await connection.query(`CREATE TABLE IF NOT EXISTS products(
@@ -46,7 +46,7 @@ const createDatabase = async()=>{
 			image VARCHAR(255) NOT NULL,
 			price DECIMAL(10,2) NOT NULL,
 			stock INT NOT NULL DEFAULT 0,
-			created_at TIMESTAMP DEFAULT CURRENT_DEFAULT,
+			created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 			updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP);`);
 			
 			console.log("Base de datos creada correctamente");
