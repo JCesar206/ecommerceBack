@@ -15,8 +15,8 @@ const login = asyncHandler(async(req,res) => {
 	const result = await authService.login(req.body);
 	res.cookie("refreshToken", result.refreshToken, {
 		httpOnly: true,
-		sameSite: "lax",
-		secure: false,
+		sameSite: "none",
+		secure: true,
 		maxAge: 7 * 24 * 60 * 60 * 1000
 	});
 	return ApiResponse.success(res, HTTP_STATUS.OK, MESSAGES.LOGIN_SUCCESS, {

@@ -12,8 +12,20 @@ import productRoutes from "./routes/productRoutes.js";
 dotenv.config();
 
 const app = express();
-const allowedOrigins = ["http://localhost:5173", "https://jcesar206.github.io"];
-app.use(cors({origin: allowedOrigins, credentials: true}));
+const allowedOrigins = [
+    "http://localhost:5173",
+		"https://jcesar206.github.io"
+	];
+app.use(cors({
+	origin: (orogin, callback) => {
+		if (!origin || allowedOrigins.includes(origin)) {
+			callback(null, true);
+		} else {
+			callback(new Error("Origen no permitido por CORS"));
+			}
+		},
+		credentials: true
+	}));
 
 app.use(express.json());
 app.use(cookieParser());
