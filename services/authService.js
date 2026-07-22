@@ -17,6 +17,7 @@ const register = async ({name, email, password}) => {
 	return await User.findById(userId);
 };
 
+/*
 const login = async ({email, password}) => {
 	const user = await User.findByEmail(email);
 	if (!user) {
@@ -35,6 +36,49 @@ await RefreshToken.deleteByUser(user.id);
 const hashedRefreshToken = await bcrypt.hash(refreshToken, 10);
 await RefreshToken.create(user.id, hashedRefreshToken, new Date(payload.exp * 1000));
 return {accessToken, refreshToken, user: {id: user.id, name: user.name, email: user.email, role: user.role}};
+};
+*/
+
+const login = async ({ email, password }) => {
+    console.log("1. Buscando usuario");
+    const user = await User.findByEmail(email);
+    console.log("2. Usuario encontrado:", !!user);
+    if (!user) { throw new AppError(MESSAGES.INVALID_CREDENTIALS, HTTP_STATUS.UNAUTHORIZED); }
+    console.log("3. Comparando contraseña");
+    const validPassword = await bcrypt.compare(password, user.password);
+    console.log("4. Password válido:", validPassword);
+    if (!validPassword) { throw new AppError(MESSAGES.INVALID_CREDENTIALS, HTTP_STATUS.UNAUTHORIZED); }
+
+    console.log("5. Generando access token");
+    const accessToken = generateAccessToken(user);
+    console.log("6. Generando refresh token");
+    const refreshToken = generateRefreshToken(user);
+    console.log("7. Verificando refresh token");
+    const payload = verifyRefreshToken(refreshToken);
+    console.log("8. Eliminando refresh anterior");
+    await RefreshToken.deleteByUser(user.id);
+    console.log("9. Hasheando refresh");
+    const hashedRefreshToken = await bcrypt.hash(refreshToken, 10);
+
+    console.log("10. Guardando refresh");
+    await RefreshToken.create(
+        user.id,
+        hashedRefreshToken,
+        new Date(payload.exp * 1000)
+    );
+
+    console.log("11. Login finalizado");
+
+    return {
+        accessToken,
+        refreshToken,
+        user: {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            role: user.role
+        }
+    };
 };
 
 const refresh = async (refreshToken) => {

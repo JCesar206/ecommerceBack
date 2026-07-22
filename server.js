@@ -10,12 +10,25 @@ import errorHandler from "./middleware/errorHandler.js";
 import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 
+console.log("===== VARIABLES JWT =====");
+console.log("JWT_ACCESS_SECRET:", process.env.JWT_ACCESS_SECRET);
+console.log("JWT_REFRESH_SECRET:", process.env.JWT_REFRESH_SECRET);
+console.log("ACCESS_TOKEN_EXPIRE:", process.env.ACCESS_TOKEN_EXPIRE);
+console.log("REFRESH_TOKEN_EXPIRE:", process.env.REFRESH_TOKEN_EXPIRE);
+console.log("=========================");
+
 const app = express();
 
 logger.info("Iniciando Ecommerce API...");
 
 process.on("uncaughtException", (error) => {
-	logger.error(`Error no controlado: ${error.message}`);
+	console.error(error);
+	logger.error(error);
+});
+
+process.on("unhandledRejection", (error) => {
+	console.error(error);
+	logger.error(error);
 });
 
 process.on("unhandledRejection", (error) => {
@@ -40,8 +53,6 @@ app.use(cors({
 
 app.use(express.json());
 app.use(cookieParser());
-
-
 app.use(morgan("combined", 
 	{stream: {
 		write: (message) => {
@@ -50,6 +61,7 @@ app.use(morgan("combined",
 	}
 }));
 
+app.use((req, res, next) => { console.log(`${req.method} ${req.originalUrl}`); next(); });
 app.use("/uploads", express.static("uploads"));
 app.get("/", (req, res) => { res.json({ message: "Ecommerce API funcionando" }); });
 
